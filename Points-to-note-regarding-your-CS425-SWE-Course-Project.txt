@@ -1,0 +1,11 @@
+UNDERGRADUATES: 
+=============
+
+Here are IMPORTANT POINTS TO NOTE REGARDING YOUR CS425-SWE COURSE PROJECT:
+
+1. Your CS425-SWE course project will count towards satisfying the senior project requirement for your BS CS. 
+
+2. You will be expected to work on it individually and extend it and include connections to principles of the 
+Science and Technology of Consciousness.
+
+3. You will be expected to give individual presentations. 
