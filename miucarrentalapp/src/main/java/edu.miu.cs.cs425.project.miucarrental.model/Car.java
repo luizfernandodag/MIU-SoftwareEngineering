@@ -10,20 +10,20 @@
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         private Long id;
-    //    @NotEmpty(message = "Make cannot be blank")
+        //    @NotEmpty(message = "Make cannot be blank")
         @Column(nullable = false)
         private String carMake;
-    //    @NotBlank(message = "Brand cannot be blank")
+        //    @NotBlank(message = "Brand cannot be blank")
         @Column(nullable = false)
         private String carBrand;
-    //    @NotBlank(message = "Plate Number cannot be blank")
+        //    @NotBlank(message = "Plate Number cannot be blank")
         @Column(nullable = false)
         private String plateNumber;
         @Column(nullable = false)
         private double rentPrice;
-    //    @NotBlank(message = "Model cannot be blank")
+        //    @NotBlank(message = "Model cannot be blank")
         private String model;
-    //    @NotBlank(message = "Color cannot be blank")
+        //    @NotBlank(message = "Color cannot be blank")
         private String color;
 
         @Lob
@@ -33,7 +33,7 @@
         @OneToOne
         private CarStatus carStatus;
 
-        public  Car(){
+        public Car() {
         }
 
         public String getPlateNumber() {
@@ -126,3 +126,5 @@
         public void setCarPic(byte[] carPic) {
             this.carPic = carPic;
         }
+
+    }
