@@ -1,3 +1,4 @@
+
     package edu.miu.cs.cs425.project.miucarrental.model;
 
     import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -125,4 +126,3 @@
         public void setCarPic(byte[] carPic) {
             this.carPic = carPic;
         }
-    }
