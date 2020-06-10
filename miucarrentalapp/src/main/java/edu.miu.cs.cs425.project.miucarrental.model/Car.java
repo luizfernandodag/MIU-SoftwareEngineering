@@ -3,13 +3,14 @@ package edu.miu.cs.cs425.project.miucarrental.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-//    @NotEmpty(message = "Make cannot be blank")
+    @NotEmpty(message = "Make cannot be blank")
     @Column(nullable = false)
     private String carMake;
 //    @NotBlank(message = "Brand cannot be blank")
