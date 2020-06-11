@@ -10,7 +10,7 @@
 //    import javax.validation.constraints.NotEmpty;
 
     @Entity
-    public class Customer {
+    public class User {
 
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,22 +27,22 @@
 
     //    @NotBlank(message = "License Number  Can Not Be Empty")
         @Column(nullable = false)
-        private String licenceNumber;
+        private String driverLicenceNumber;
 
     //    @Valid
         @OneToOne(cascade = CascadeType.ALL)
         Address address;
 
 
-        public Customer(){
+        public User(){
 
         }
-        public Customer(String firstName, String lastName, LocalDate dob, String licenceNumber, Address address){
+        public User(String firstName, String lastName, LocalDate dob, String licenceNumber, Address address){
 
             this.firstName = firstName;
             this.lastName = lastName;
             this.dob = dob;
-            this.licenceNumber = licenceNumber;
+            this.driverLicenceNumber = licenceNumber;
             this.address = address;
 
         }
@@ -81,12 +81,12 @@
             this.dob = dob;
         }
 
-        public String getLicenceNumber() {
-            return licenceNumber;
+        public String getDriverLicenceNumber() {
+            return this.driverLicenceNumber;
         }
 
-        public void setLicenceNumber(String licenceNumber) {
-            this.licenceNumber = licenceNumber;
+        public void setDriverLicenceNumber(String licenceNumber) {
+            this.driverLicenceNumber = licenceNumber;
         }
 
         public Address getAddress() {
@@ -106,7 +106,7 @@
                     ", firstName='" + firstName + '\'' +
                     ", lastName='" + lastName + '\'' +
                     ", dob=" + dob +
-                    ", licenceNumber='" + licenceNumber + '\'' +
+                    ", driverLicenseNumber='" + this.driverLicenceNumber + '\'' +
                     ", address=" + address +
                     '}';
         }
