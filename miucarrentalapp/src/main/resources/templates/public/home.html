@@ -4,13 +4,7 @@
     <meta charset="UTF-8">
     <title>MIUCarRent</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css" integrity="sha256-nwNjrH7J9zS/Ti4twtWX7OsC5QdQHCIKTv5cLMsGo68=" crossorigin="anonymous" />
-    <link rel="stylesheet" th:href="@{/css/material.min.css}">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <head th:replace="fragments/links :: links"></head>
 
 </head>
 <body>
@@ -35,7 +29,7 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Log in</button>
+            <a class="btn btn-outline-primary my-2 my-sm-0 mr-2" type="submit" href="/login">Log in</a>
             <button class="btn btn-primary my-2 my-sm-0" type="submit">Register</button>
         </form>
     </div>
@@ -303,17 +297,8 @@
 
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
-<script th:href="@{/js/material.min.js}"></script>
-<script th:href="@{/js/app.js}"></script>
+
+<section th:replace="fragments/scripts :: scripts"></section>
 
 </body>
 </html>
