@@ -1,0 +1,82 @@
+
+<header xmlns:th="http://www.thymeleaf.org" th:fragment="navbar">
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="/dashboard">MIUCarRent</a>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+            <div class="dropdown">
+                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">face</i>   Admin
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="#">Help</a>
+                    <a class="dropdown-item" href="/">Log Out</a>
+                </div>
+            </div>
+
+        </form>
+
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-1">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropCar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Cars
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropCar">
+                        <a class="dropdown-item" href="#">New</a>
+                        <a class="dropdown-item" href="#">List of Cars</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropCustomer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Customers
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropCustomer">
+                        <a class="dropdown-item" href="#">New</a>
+                        <a class="dropdown-item" href="#">List of Customers</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropRent" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Reservations
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropRent">
+                        <a class="dropdown-item" href="#">New</a>
+                        <a class="dropdown-item" href="#">List of Reservations</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Users
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropUser">
+                        <a class="dropdown-item" href="#">New</a>
+                        <a class="dropdown-item" href="#">List of Users</a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+        </ol>
+    </nav>
+
+</header>

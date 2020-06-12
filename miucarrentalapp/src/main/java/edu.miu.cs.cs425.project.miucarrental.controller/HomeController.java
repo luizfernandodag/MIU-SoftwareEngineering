@@ -15,4 +15,9 @@ public class HomeController {
         return "public/login";
     }
 
+    @GetMapping(value = { "/dashboard", "/miucarrental/dashboard"})
+    public String showDashboar() {
+        return "dashboard/index";
+    }
+
 }

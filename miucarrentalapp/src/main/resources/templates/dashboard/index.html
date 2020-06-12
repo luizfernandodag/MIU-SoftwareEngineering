@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="fragments/dashboard/dashLayout" xmlns:layout="http://www.thymeleaf.org/"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<div layout:fragment="content">
+
+    <div class="row no-gutters container-max-center">
+        <div class="col-md-6 col-lg-3 py-2">
+            <div class="card m-auto" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Total Cars</h5>
+                    <p class="display-4 font-weight-light">200</p>
+                    <div class="progress my-3">
+                        <div class="progress-bar bg-success" role="progressbar"
+                             style="width: 25%" aria-valuenow="25"
+                             aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <a href="#" class="btn btn-outline-success">See list</a>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <div class="col-md-6 col-lg-3 py-2">
+            <div class="card m-auto" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Total Customers</h5>
+                    <p class="display-4 font-weight-light">475</p>
+                    <div class="progress my-3">
+                        <div class="progress-bar bg-primary" role="progressbar"
+                             style="width: 55%" aria-valuenow="55"
+                             aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <a href="#" class="btn btn-outline-primary">See list</a>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <div class="col-md-6 col-lg-3 py-2">
+            <div class="card m-auto" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Total Reservations</h5>
+                    <p class="display-4 font-weight-light">2200</p>
+                    <div class="progress my-3">
+                        <div class="progress-bar bg-info" role="progressbar"
+                             style="width: 55%" aria-valuenow="55"
+                             aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <a href="#" class="btn btn-outline-info">See list</a>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <div class="col-md-6 col-lg-3 py-2">
+            <div class="card m-auto" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Total Users</h5>
+                    <p class="display-4 font-weight-light">120</p>
+                    <div class="progress my-3">
+                        <div class="progress-bar bg-warning" role="progressbar"
+                             style="width: 55%" aria-valuenow="55"
+                             aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <a href="#" class="btn btn-outline-warning">See list</a>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <div class="col-md-6 col-lg-8 py-4">
+            <div class="m-auto text-center p-2">
+                <img class="img-fluid" src="https://via.placeholder.com/850x450" alt="">
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 py-4">
+            <div class="m-auto text-center p-2">
+                <img class="img-fluid" src="https://via.placeholder.com/400x450" alt="">
+            </div>
+        </div>
+
+        <div class="col-12 py-4">
+            <h4 class="font-weight-light border-bottom">List of Reservations</h4>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Col 1</th>
+                    <th scope="col">Col 2</th>
+                    <th scope="col">Col 3</th>
+                    <th scope="col">Col 4</th>
+                    <th scope="col">Col 5</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="i: ${#numbers.sequence(0, 5)}">
+                    <th scope="row">1</th>
+                    <td>Data 1</td>
+                    <td>Data 2</td>
+                    <td>Date 3</td>
+                    <td>Date 4</td>
+                    <td>Date 5</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>
