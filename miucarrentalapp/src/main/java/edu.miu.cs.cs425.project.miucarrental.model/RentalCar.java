@@ -21,18 +21,22 @@
         Car car;
 
         @OneToOne()
-        Customer customer;
+        User user;
 
 
         public RentalCar(){
 
         }
 
-        public RentalCar(LocalDate pickupDate, LocalDate returnDate, Car car, Customer customer ) {
+        public RentalCar(LocalDate pickupDate, LocalDate returnDate, Car car, User user ) {
             this.pickupDate = pickupDate;
             this.returnDate = returnDate;
             this.car = car;
-            this.customer = customer;
+            this.user = user;
+        }
+
+        public RentalCar(Long id) {
+            this.id = id;
         }
 
         public Long getId() {
@@ -67,12 +71,13 @@
             this.car = car;
         }
 
-        public Customer getCustomer() {
-            return customer;
+
+        public User getUser() {
+            return user;
         }
 
-        public void setCustomer(Customer customer) {
-            this.customer = customer;
+        public void setUser(User user) {
+            this.user = user;
         }
 
         @Override
@@ -82,7 +87,7 @@
                     ", pickupDate=" + pickupDate +
                     ", returnDate=" + returnDate +
                     ", car=" + car +
-                    ", customer=" + customer +
+                    ", user=" + user +
                     '}';
         }
     }

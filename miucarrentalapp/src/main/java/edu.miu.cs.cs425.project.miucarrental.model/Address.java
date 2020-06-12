@@ -1,6 +1,7 @@
     package edu.miu.cs.cs425.project.miucarrental.model;
 
     import javax.persistence.*;
+    import javax.validation.constraints.NotBlank;
 
     @Entity
     public class Address {
@@ -8,16 +9,16 @@
         @GeneratedValue(strategy = GenerationType.AUTO)
 
         private Long id;
-    //    @NotBlank(message = "Street can not be blank")
+      @NotBlank(message = "Street can not be blank")
         @Column(nullable = false)
         private String street;
-    //    @NotBlank(message = "City can not be blank")
+      @NotBlank(message = "City can not be blank")
         @Column(nullable = false)
         private String city;
-    //    @NotBlank(message = "State can not be blank")
+       @NotBlank(message = "State can not be blank")
         @Column(nullable = false)
         private String state;
-    //    @NotBlank(message = "ZipCode can not be blank")
+       @NotBlank(message = "ZipCode can not be blank")
         @Column(nullable = false)
         private String zipCode;
 
