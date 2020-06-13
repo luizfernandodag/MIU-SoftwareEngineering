@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -33,6 +34,18 @@ public class User {
     //to be set when car is rented
     @Column(nullable=true)
     private String driversLicense;
+   //@Column(nullable=false)
+    //@NotBlank(message = "* Address is required")
+
+//    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL)
+ @OneToOne(cascade = CascadeType.ALL)
+@JoinTable(
+        name = "users_address",
+        joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "userId")},
+        inverseJoinColumns = {@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "addressId")}
+)
+    private Address address;
 
 
 
@@ -47,13 +60,50 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String username, String password, String email) {
+    public User(String firstName, String lastName, String username, String password, String email, Address address) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.email = email;
+
+        this.address = address;
+        this.address.setUser(this);
+
+        this.roles = new ArrayList<Role>();
+    }
+
+    public User(String firstName, String lastName, String username, String password, String email, Address address, Role role) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+
+        this.address = address;
+        this.address.setUser(this);
+        this.roles = new ArrayList<Role>();
+        role.addUser(this);
+        this.roles.add(role);
+    }
+
+    public User(String firstName, String lastName, String username, String password, String email, Address address, String roleName) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+
+        this.address = address;
+        this.address.setUser(this);
+        this.roles = new ArrayList<Role>();
+        Role role = new Role(roleName);
+
+        role.addUser(this);
+        this.roles.add(role);
     }
 
     public Integer getUserId() {
@@ -112,6 +162,24 @@ public class User {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+    public void addRole (Role role) {
+
+
+        if(!this.roles.contains(role))
+            this.roles.add(role);
+        if(!role.getUsers().contains(this))
+            role.addUser(this);
+    }
+
+    public void addRole (String roleName) {
+
+        Role rolee = new Role(roleName);
+        if(!this.roles.contains(rolee))
+        this.roles.add(rolee);
+        if(!rolee.getUsers().contains(this))
+            rolee.addUser(this);
+
+    }
 
     public String getDriversLicense() {
         return driversLicense;
@@ -119,5 +187,28 @@ public class User {
 
     public void setDriversLicense(String driversLicense) {
         this.driversLicense = driversLicense;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        String out =
+                "User{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + " }\n";
+        return out;
+
     }
 }
