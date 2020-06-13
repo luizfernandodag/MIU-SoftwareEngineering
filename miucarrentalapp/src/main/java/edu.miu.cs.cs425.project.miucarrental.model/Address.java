@@ -4,11 +4,11 @@
     import javax.validation.constraints.NotBlank;
 
     @Entity
+    @Table(name = "address")
     public class Address {
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-
-        private Long id;
+        private Integer addressId;
         @NotBlank(message = "Street can not be blank")
         @Column(nullable = false)
         private String street;
@@ -23,22 +23,23 @@
         private String zipCode;
 
 
+
+        @OneToOne(fetch = FetchType.LAZY, optional = true)
+        @JoinColumn(name = "user_id", nullable = true)
+        private User user;
+
+
         public Address(){
 
         }
-        public Address(String street,String city, String state,String zipCode){
+
+        public Address(String street,String city, String state,String zipCode ){
+            this.addressId = addressId;
             this.street = street;
             this.city = city;
             this.state = state;
             this.zipCode = zipCode;
-        }
 
-        public Long getId() {
-            return id;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
         }
 
         public String getStreet() {
@@ -77,7 +78,22 @@
         public String toString() {
             return street + ", " + city + ", " + state + " " + zipCode;
 
+        }
 
+        public User getUser() {
+            return user;
+        }
+
+        public void setUser(User user) {
+            this.user = user;
+        }
+
+        public Integer getAddressId() {
+            return addressId;
+        }
+
+        public void setAddressId(Integer addressId) {
+            this.addressId = addressId;
         }
     }
 

@@ -1,10 +1,255 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:layout="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>MIUCarRent</title>
+
+    <head th:replace="fragments/links :: links"></head>
+
 </head>
 <body>
-hey
+
+<!--Navbar-->
+<nav th:replace="fragments/home/navbar :: navbar"></nav>
+<!--Navbar-->
+
+<!--Header-->
+<header class="container-fluid bg-light p-md-3 p-lg-5">
+    <div class="row container-max-center" style="min-height: 20vh;">
+        <div class="col-md-12">
+            <h2>MIU CAR RENTAL</h2>
+
+        </div>
+
+        <form class="col-md-12">
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <input type="date" class="form-control" placeholder="Date from">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <input type="date" class="form-control" placeholder="Date To">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</header>
+
+<!---->
+<section class="bg-light mt-2">
+    <div class="row py-3 container-max-center justify-content-center align-items-center">
+        <div class="col-md-8">
+            <div class="display-4 font-weight-light" >6 cars - from $60 to $60</div>
+            <div>Sorted by Total Price in US Dollars</div>
+        </div>
+        <div class="col-md-4">
+            <div class="dropdown float-right">
+                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sort by
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Price</a>
+                    <a class="dropdown-item" href="#">Brand</a>
+                    <a class="dropdown-item" href="#">Quality</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Products -->
+<section class="mt-5">
+    <div class="row no-gutters container-max-center">
+        <div class="col-2 border-right" style="min-width: 150px">
+            <form>
+                <div class="p-2 bg-light text-uppercase font-weight-bold">
+                    Filter your results
+                </div>
+                <div class="mt-2 p-2">
+                    <div class="text-uppercase mb-2">Distance</div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="distance" id="d1" value="value1" checked>
+                        <label class="form-check-label" for="d1">
+                            20 miles
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="distance" id="exampleRadios2" value="value1">
+                        <label class="form-check-label" for="exampleRadios2">
+                            50 miles
+                        </label>
+                    </div>
+                </div>
+                <div class="mt-2 p-2">
+                    <div class="text-uppercase mb-2">Passenger Capacity</div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="passenger" id="p1" value="option1" >
+                        <label class="form-check-label" for="p1">
+                            2 persons
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="passenger" id="p2" value="option1" >
+                        <label class="form-check-label" for="p2">
+                            1-5 persons
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="passenger" id="p3" value="option1" checked>
+                        <label class="form-check-label" for="p3">
+                            8 persons
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mt-2 p-2">
+                    <div class="text-uppercase mb-2">Car type</div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="car" id="c1" value="option1" checked>
+                        <label class="form-check-label" for="c1">
+                            Economy
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="car" id="c2" value="option2">
+                        <label class="form-check-label" for="c2">
+                            Intermediate
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="car" id="c3" value="option2">
+                        <label class="form-check-label" for="c3">
+                            Standard
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="car" id="c4" value="option2">
+                        <label class="form-check-label" for="c4">
+                            Full-Size
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mt-2 p-2">
+                    <div class="text-uppercase mb-2">Rental Company</div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rental" id="r1" value="option1" checked>
+                        <label class="form-check-label" for="r1">
+                            Hertz
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mt-2 p-2">
+                    <div class="text-uppercase mb-2">Payment options</div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="payment" id="o1" value="option1" checked>
+                        <label class="form-check-label" for="o1">
+                            Pay at Pick-Up
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="payment" id="o2" value="option2">
+                        <label class="form-check-label" for="o2">
+                            Reserve without a Card
+                        </label>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+        <div class="col-10">
+            <div class="row no-gutters px-4">
+                <div class="col-sm-12 col-md-6 col-lg-4 pb-3 align-items-center justify-content-center"
+                     th:each="i: ${#numbers.sequence(0, 5)}">
+                    <div class="card m-auto shadow-none border" style="width: 18rem;">
+                        <img class="card-img-top" src="https://via.placeholder.com/250" alt="Card image cap">
+                        <div class="card-header p-1 d-flex justify-content-center align-items-center">
+                            <div class="mr-auto font-weight-light" style="font-size: 26px;">Car name</div>
+                            <div class="text-muted">$60 / day</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center align-items-center mb-2">
+                                <div class="brand mr-auto">
+                                    Brand
+                                </div>
+                                <div class="like">
+                                    100 likes
+                                </div>
+                            </div>
+                            <p class="card-text">
+                                Nemo enim ipsam voluptatem quia voluptas
+                                sit aspernatur aut odit aut fugit, sed quia
+                                consequuntur magni dolores eos qui ratione.
+                            </p>
+                            <a href="#" class="card-link">Rent</a>
+                            <a href="#" class="card-link">Details</a>
+                        </div>
+                    </div>
+
+                </div>
+            <div class="col-12">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+
+<!--Promotion-->
+<section class="container-fluid bg-light p-md-3 p-lg-5">
+    <div class="row no-gutters container-max-center justify-content-center align-items-center">
+        <div class="col-md-6">
+            <h4>Promotions</h4>
+            <p>
+                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
+                sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
+                nesciunt. Neque porro quisquam est, qui dolorem.
+            </p>
+        </div>
+        
+        <div class="col-md-6">
+            <img src="https://via.placeholder.com/500x300" alt="">
+        </div>
+    </div>
+</section>
+
+
+<!--Footer-->
+<footer th:replace="fragments/home/footer :: footer"></footer>
+
+
+<section th:replace="fragments/scripts :: scripts"></section>
+
 </body>
 </html>

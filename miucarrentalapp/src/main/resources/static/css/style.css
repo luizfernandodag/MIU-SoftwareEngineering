@@ -1,0 +1,16 @@
+
+html,
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.container-max-center{
+    max-width: 1300px;
+    margin: auto;
+}
+
+.container-max-center-lg{
+    max-width: 1500px;
+    margin: auto;
+}
