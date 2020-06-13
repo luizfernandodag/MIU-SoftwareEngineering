@@ -3,6 +3,7 @@
     import org.springframework.format.annotation.DateTimeFormat;
 
     import javax.persistence.*;
+    import javax.validation.constraints.NotBlank;
     import java.time.LocalDate;
 
     @Entity
@@ -10,10 +11,10 @@
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         private Long id;
-        //@NotBlank(message = "pick_up date can not be empty")
+        @NotBlank(message = "pick_up date can not be empty")
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate pickupDate;
-        //@NotBlank(message = "return_Date can not be empty")
+        @NotBlank(message = "return_Date can not be empty")
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate returnDate;
 
