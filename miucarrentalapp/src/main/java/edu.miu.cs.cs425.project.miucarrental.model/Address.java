@@ -26,11 +26,11 @@
 
 
 
-//        @OneToOne(fetch = FetchType.LAZY, optional = true)
-//        @JoinColumn(name = "user_id", nullable = true)
+        @OneToOne(fetch = FetchType.LAZY, optional = true)
+        @JoinColumn(name = "user_id", nullable = true)
 
     //    @Column(nullable = true) NOT ALLOWED
-        @OneToOne(mappedBy="address")
+      //  @OneToOne(mappedBy="address")
         private User user;
 
 

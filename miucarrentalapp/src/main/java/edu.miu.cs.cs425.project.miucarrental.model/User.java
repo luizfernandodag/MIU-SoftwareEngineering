@@ -37,14 +37,14 @@ public class User {
    //@Column(nullable=false)
     //@NotBlank(message = "* Address is required")
 
-//    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY,
-//            cascade = CascadeType.ALL)
- @OneToOne(cascade = CascadeType.ALL)
-@JoinTable(
-        name = "users_address",
-        joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "userId")},
-        inverseJoinColumns = {@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "addressId")}
-)
+@OneToOne(mappedBy = "user", fetch = FetchType.LAZY,
+          cascade = CascadeType.ALL)
+// @OneToOne(cascade = CascadeType.ALL)
+//@JoinTable(
+//        name = "users_address",
+//        joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "userId")},
+//        inverseJoinColumns = {@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "addressId")}
+//)
     private Address address;
 
 
