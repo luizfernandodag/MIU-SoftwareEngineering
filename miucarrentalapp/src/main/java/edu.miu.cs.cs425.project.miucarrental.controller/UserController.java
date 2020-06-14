@@ -22,67 +22,67 @@ public class UserController {
         this.UserService = UserService;
     }
 
-    @GetMapping(value = {"/eregistrar/User/list", "/User/list"})
+    @GetMapping(value = {"/miucarrental/user/list", "/user/list"})
     public ModelAndView lisUser() {
         ModelAndView modelAndView = new ModelAndView();
 
         List<User> Users = UserService.getAllUsers();
-        modelAndView.addObject("Users", Users);
+        modelAndView.addObject("users", Users);
         modelAndView.addObject("searchString", "");
         modelAndView.addObject("UsersCount", Users.size());
-        modelAndView.setViewName("User/list");
+        modelAndView.setViewName("user/list");
         return modelAndView;
 
     }
 
-    @GetMapping(value = {"/eregistrar/User/new","/User/new"})
+    @GetMapping(value = {"/miucarrental/user/new","/user/new"})
     public String displayNewUserForm(Model model) {
         model.addAttribute("User", new User());
         return "User/new";
     }
 
 
-    @PostMapping(value = {"/eregistrar/User/new","/User/new"})
+    @PostMapping(value = {"/miucarrental/user/new","/user/new"})
     public String addNewUser(@Valid @ModelAttribute("User") User User,
                                 BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
-            return "User/new";
+            return "user/new";
         }
         User = UserService.saveUser(User);
-        return "redirect:/eregistrar/User/list";
+        return "redirect:/miucarrental/user/list";
     }
 
-    @GetMapping(value = {"/eregistrar/User/edit/{UserId}","/User/edit/{UserId}"})
+    @GetMapping(value = {"/miucarrental/user/edit/{UserId}","/user/edit/{UserId}"})
     public String editUser(@PathVariable Integer UserId, Model model) {
         User User = UserService.getUserById  (UserId);
 
         if (User != null) {
             model.addAttribute("User", User);
-            return "User/edit";
+            return "user/edit";
         }
-        return "User/list";
+        return "user/list";
     }
 
-    @PostMapping(value = {"/eregistrar/User/edit","/User/edit"})
+    @PostMapping(value = {"/miucarrental/user/edit","/user/edit"})
     public String updateUser(@Valid @ModelAttribute("User") User User,
                                 BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
-            return "User/edit";
+            return "user/edit";
         }
 
-        return "redirect:/eregistrar/User/list";
+        return "redirect:/miucarrental/user/list";
     }
 
-    @GetMapping(value = {"/eregistrar/User/delete/{UserId}","/User/delete/{UserId}"})
+    @GetMapping(value = {"/miucarrental/user/delete/{UserId}","/user/delete/{UserId}"})
     public String deleteUser(@PathVariable Integer UserId, Model model) {
         UserService.deleteUserById(UserId);
-        return "redirect:/eregistrar/User/list";
+        return "redirect:/miucarrental/user/list";
 
     }
 
-    @GetMapping(value = {"/eregistrar/User/search", "/User/search"})
+    @GetMapping(value = {"/miucarrental/user/search", "/user/search"})
     public ModelAndView searchUsers(@RequestParam String searchString) {
         ModelAndView modelAndView = new ModelAndView();
 
@@ -91,15 +91,9 @@ public class UserController {
         modelAndView.addObject("Users", Users);
         modelAndView.addObject("searchString", searchString);
         modelAndView.addObject("UsersCount", Users.size());
-        modelAndView.setViewName("User/list");
+        modelAndView.setViewName("user/list");
         return modelAndView;
     }
 
-    @ModelAttribute("isInternationalList")
-    public List<String> populateInternationaList() {
-        List<String> nationalities = new ArrayList<String>();
-        nationalities.add("no");
-        nationalities.add("yes");
-        return nationalities;
-    }
+
 }
