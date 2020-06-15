@@ -57,7 +57,47 @@ public class User {
     )
     private List<Role> roles;
 
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<RentalCar> RentsAndReservations;
+
+
     public User() {
+    }
+
+    public User(String firstName, String lastName, String username, String password, String email,String driversLicense, Address address, Role role) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+
+        this.address = address;
+        this.address.setUser(this);
+        this.driversLicense = driversLicense;
+
+        this.roles = new ArrayList<Role>();
+        this.roles.add(role);
+        this.RentsAndReservations = new ArrayList<RentalCar>();
+    }
+
+
+    public User(String firstName, String lastName, String username, String password, String email,String driversLicense, Address address) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+
+        this.address = address;
+        this.address.setUser(this);
+        this.driversLicense = driversLicense;
+
+        this.roles = new ArrayList<Role>();
+        this.RentsAndReservations = new ArrayList<RentalCar>();
     }
 
     public User(String firstName, String lastName, String username, String password, String email, Address address) {
@@ -72,6 +112,7 @@ public class User {
         this.address.setUser(this);
 
         this.roles = new ArrayList<Role>();
+        this.RentsAndReservations = new ArrayList<RentalCar>();
     }
 
     public User(String firstName, String lastName, String username, String password, String email, Address address, Role role) {
@@ -84,6 +125,7 @@ public class User {
 
         this.address = address;
         this.address.setUser(this);
+        this.RentsAndReservations = new ArrayList<RentalCar>();
         this.roles = new ArrayList<Role>();
         role.addUser(this);
         this.roles.add(role);
@@ -100,10 +142,79 @@ public class User {
         this.address = address;
         this.address.setUser(this);
         this.roles = new ArrayList<Role>();
+        this.RentsAndReservations = new ArrayList<RentalCar>();
         Role role = new Role(roleName);
 
         role.addUser(this);
         this.roles.add(role);
+    }
+
+
+    public User(String firstName, String lastName, String username, String password, String email, Address address, Role role, RentalCar rentalCarReservation ) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+
+        this.address = address;
+        this.address.setUser(this);
+        this.RentsAndReservations = new ArrayList<RentalCar>();
+        this.RentsAndReservations.add(rentalCarReservation);
+        this.roles = new ArrayList<Role>();
+        role.addUser(this);
+        this.roles.add(role);
+    }
+
+    public User(String firstName, String lastName, String username, String password, String email, Address address, String roleName,RentalCar rentalCarReservation) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+
+        this.address = address;
+        this.address.setUser(this);
+        this.roles = new ArrayList<Role>();
+        this.RentsAndReservations = new ArrayList<RentalCar>();
+        this.RentsAndReservations.add(rentalCarReservation);
+        Role role = new Role(roleName);
+
+        role.addUser(this);
+        this.roles.add(role);
+    }
+
+
+
+
+
+
+    public User(@NotBlank(message = "* First Name is required") String firstName, @NotBlank(message = "* Last Name is required") String lastName, @NotBlank(message = "* Username is required") String username, @NotBlank(message = "* Password is required") @Size(min = 8) String password, @NotBlank(message = "* Email is required") @Email(message = "{errors.invalid_email}") String email, String driversLicense, Address address, List<Role> roles, List<RentalCar> rentsAndReservations) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.driversLicense = driversLicense;
+        this.address = address;
+        this.roles = roles;
+        this.RentsAndReservations = rentsAndReservations;
+    }
+
+    public User(Integer userId, @NotBlank(message = "* First Name is required") String firstName, @NotBlank(message = "* Last Name is required") String lastName, @NotBlank(message = "* Username is required") String username, @NotBlank(message = "* Password is required") @Size(min = 8) String password, @NotBlank(message = "* Email is required") @Email(message = "{errors.invalid_email}") String email, String driversLicense, Address address, List<Role> roles, List<RentalCar> rentsAndReservations) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.driversLicense = driversLicense;
+        this.address = address;
+        this.roles = roles;
+        RentsAndReservations = rentsAndReservations;
     }
 
     public Integer getUserId() {
@@ -181,6 +292,11 @@ public class User {
 
     }
 
+    public void addRentalReservation(RentalCar rentalCarReservation)
+    {
+        this.RentsAndReservations.add(rentalCarReservation);
+    }
+
     public String getDriversLicense() {
         return driversLicense;
     }
@@ -210,5 +326,13 @@ public class User {
                 ", email='" + email + " }\n";
         return out;
 
+    }
+
+    public List<RentalCar> getRentsAndReservations() {
+        return RentsAndReservations;
+    }
+
+    public void setRentsAndReservations(List<RentalCar> rentsAndReservations) {
+        RentsAndReservations = rentsAndReservations;
     }
 }

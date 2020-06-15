@@ -5,12 +5,14 @@
     import javax.persistence.*;
     import javax.validation.constraints.NotBlank;
     import java.time.LocalDate;
+    import java.util.List;
 
     @Entity
+    @Table(name = "rental_cars")
     public class RentalCar {
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        private Long id;
+        private Integer rentalCarId;
         @NotBlank(message = "pick_up date can not be empty")
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate pickupDate;
@@ -18,11 +20,18 @@
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate returnDate;
 
-        @OneToOne(cascade = CascadeType.ALL)
+        //@OneToOne(cascade = CascadeType.ALL)
+        @ManyToOne
+        @JoinColumn(name="car_id", nullable=false)
         Car car;
 
-        @OneToOne()
+        //@OneToOne()
+        @ManyToOne
+        @JoinColumn(name="user_id", nullable=false)
         User user;
+
+
+
 
 
         public RentalCar(){
@@ -33,20 +42,16 @@
             this.pickupDate = pickupDate;
             this.returnDate = returnDate;
             this.car = car;
+            this.car.addRentalReservation(this);
             this.user = user;
+            this.user.addRentalReservation(this);
         }
 
-        public RentalCar(Long id) {
-            this.id = id;
+        public RentalCar(Integer id) {
+            this.rentalCarId = id;
         }
 
-        public Long getId() {
-            return id;
-        }
 
-        public void setId(Long id) {
-            this.id = id;
-        }
 
         public LocalDate getPickupDate() {
             return pickupDate;
@@ -84,11 +89,19 @@
         @Override
         public String toString() {
             return "RentalCar{" +
-                    "id=" + id +
+                    "id=" + rentalCarId +
                     ", pickupDate=" + pickupDate +
                     ", returnDate=" + returnDate +
                     ", car=" + car +
                     ", user=" + user +
                     '}';
+        }
+
+        public Integer getRentalCarId() {
+            return rentalCarId;
+        }
+
+        public void setRentalCarId(Integer rentalCarId) {
+            this.rentalCarId = rentalCarId;
         }
     }

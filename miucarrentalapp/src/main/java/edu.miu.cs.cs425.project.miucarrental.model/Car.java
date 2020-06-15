@@ -3,14 +3,15 @@
         import com.fasterxml.jackson.annotation.JsonIgnore;
         import javax.persistence.*;
         import javax.validation.constraints.NotBlank;
-
+        import java.util.ArrayList;
+        import java.util.List;
 
 
         @Entity
         public class Car {
             @Id
             @GeneratedValue(strategy = GenerationType.AUTO)
-            private Long id;
+            private Long carId;
             @NotBlank(message = "Make cannot be blank")
             @Column(nullable = false)
             private String carMake;
@@ -33,6 +34,9 @@
 
             @OneToOne
             private CarStatus carStatus;
+
+            @OneToMany(cascade = CascadeType.ALL)
+            private List<RentalCar> RentsAndReservations;
 
             public Car() {
             }
@@ -62,15 +66,22 @@
                 this.model = model;
                 this.color = color;
                 this.carPic = carPic;
+                this.RentsAndReservations = new ArrayList<RentalCar>();
             }
 
-            public Long getId() {
-                return id;
+            public Car(String carMake, String carBrand, String plateNumber, CarStatus carStatus, double rentPrice, String model, String color, byte[] carPic,RentalCar RentsAndReservations) {
+                this.carMake = carMake;
+                this.carBrand = carBrand;
+                this.plateNumber = plateNumber;
+                this.carStatus = carStatus;
+                this.rentPrice = rentPrice;
+                this.model = model;
+                this.color = color;
+                this.carPic = carPic;
+                this.RentsAndReservations = new ArrayList<RentalCar>();
+                this.RentsAndReservations.add(RentsAndReservations);
             }
 
-            public void setId(Long id) {
-                this.id = id;
-            }
 
             public String getCarMake() {
                 return carMake;
@@ -126,6 +137,27 @@
 
             public void setCarPic(byte[] carPic) {
                 this.carPic = carPic;
+            }
+
+            public Long getCarId() {
+                return carId;
+            }
+
+            public List<RentalCar> getRentsAndReservations() {
+                return RentsAndReservations;
+            }
+
+            public void setCarId(Long carId) {
+                this.carId = carId;
+            }
+
+            public void setRentsAndReservations(List<RentalCar> rentsAndReservations) {
+                RentsAndReservations = rentsAndReservations;
+            }
+
+            public void addRentalReservation(RentalCar rentalCarReservation)
+            {
+                this.RentsAndReservations.add(rentalCarReservation);
             }
 
         }

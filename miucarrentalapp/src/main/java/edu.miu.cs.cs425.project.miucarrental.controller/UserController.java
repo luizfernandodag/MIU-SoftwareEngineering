@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping(value = {"/miucarrental/user/list", "/user/list"})
-    public ModelAndView lisUser() {
+    public ModelAndView listUser() {
         ModelAndView modelAndView = new ModelAndView();
 
         List<User> Users = UserService.getAllUsers();
