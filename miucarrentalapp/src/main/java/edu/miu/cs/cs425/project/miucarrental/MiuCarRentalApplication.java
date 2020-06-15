@@ -52,37 +52,37 @@ public class MiuCarRentalApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //ROLES
-        Role roleANONYMOUS = new Role("ANONYMOUS");
-        Role roleCUSTOMER = new Role("CUSTOMER");
-        Role roleADMIN = new Role("ADMIN");
-        //ADRESS TEST
-        Address addr = new Address("test street", "Fairfield", "IOWA", "56728");
-        Address addr2 = new Address("test2 street", "Fairfield", "IOWA", "56728");
-        Address addr3 = new Address("test3 street", "Fairfield", "IOWA", "56728");
-        //USERS
-        String driverLicense = "G340-560-139-985";
-        User userAnonymous = new User("USER", "ANONYMOUS", "ANONYMOUS", "123456789", "anonymous@miucarrent.com", addr, roleANONYMOUS);
-        User userCustomer = new User("USER", "CUSTOMER", "CUSTOMER", "123456789", "customer@miucarent.com", addr2, roleCUSTOMER);
-        User userAdmin = new User("USER", "ADMIN", "ADMIN", "123456789", "admin@miucarrent.com", addr3, roleADMIN);
-
-
-        //User userCustomer = new User("USER", "CUSTOMER", "G340-560-139-986", addr, roleCUSTOMER);
-        //User userAdmin = new User("USER", "ADMIN", LocalDate.now(), "G340-560-139-986", addr, roleADMIN);
-        //SAVE USERS AND ROLES/ADDRESS CASCADE
-        if (userAnonymous == null)
-            System.out.println("NULL");
-        else {
-            System.out.println(userAnonymous);
-        }
-        //   Address savedAdress = this.saveAddress();
-        User savedUser1 = this.upsertUser(userAnonymous);
-        User savedUser2 = this.upsertUser(userCustomer);
-        User savedUser3 = this.upsertUser(userAdmin);
-
-        System.out.println(savedUser1);
-        System.out.println(savedUser2);
-        System.out.println(savedUser3);
+//        //ROLES
+//        Role roleANONYMOUS = new Role("ANONYMOUS");
+//        Role roleCUSTOMER = new Role("CUSTOMER");
+//        Role roleADMIN = new Role("ADMIN");
+//        //ADRESS TEST
+//        Address addr = new Address("test street", "Fairfield", "IOWA", "56728");
+//        Address addr2 = new Address("test2 street", "Fairfield", "IOWA", "56728");
+//        Address addr3 = new Address("test3 street", "Fairfield", "IOWA", "56728");
+//        //USERS
+//        String driverLicense = "G340-560-139-985";
+//        User userAnonymous = new User("USER", "ANONYMOUS", "ANONYMOUS", "123456789", "anonymous@miucarrent.com", addr, roleANONYMOUS);
+//        User userCustomer = new User("USER", "CUSTOMER", "CUSTOMER", "123456789", "customer@miucarent.com", addr2, roleCUSTOMER);
+//        User userAdmin = new User("USER", "ADMIN", "ADMIN", "123456789", "admin@miucarrent.com", addr3, roleADMIN);
+//
+//
+//        //User userCustomer = new User("USER", "CUSTOMER", "G340-560-139-986", addr, roleCUSTOMER);
+//        //User userAdmin = new User("USER", "ADMIN", LocalDate.now(), "G340-560-139-986", addr, roleADMIN);
+//        //SAVE USERS AND ROLES/ADDRESS CASCADE
+//        if (userAnonymous == null)
+//            System.out.println("NULL");
+//        else {
+//            System.out.println(userAnonymous);
+//        }
+//        //   Address savedAdress = this.saveAddress();
+//        User savedUser1 = this.upsertUser(userAnonymous);
+//        User savedUser2 = this.upsertUser(userCustomer);
+//        User savedUser3 = this.upsertUser(userAdmin);
+//
+//        System.out.println(savedUser1);
+//        System.out.println(savedUser2);
+//        System.out.println(savedUser3);
 
 
     }
