@@ -2,8 +2,6 @@ package edu.miu.cs.cs425.project.miucarrental.controller;
 
 import edu.miu.cs.cs425.project.miucarrental.model.RentalCar;
 import edu.miu.cs.cs425.project.miucarrental.service.RentalCarService;
-import edu.miu.cs.cs425.project.miucarrental.service.RentalCarService;
-import edu.miu.cs.cs425.project.miucarrental.service.RentalCarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

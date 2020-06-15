@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/car")
 public class CarController {
 
     @Autowired
@@ -36,54 +35,56 @@ public class CarController {
     @Autowired
     CarRepository carRepository;
 
-    @GetMapping("/list")
+    @GetMapping(value = {"/dashboard/car/list", "/miucarrental/dashboard/car/list"})
     public String getAllCars(Model model, Principal principal) {
-        System.out.println("CURRENT USER: " + principal.getName());
+        // System.out.println("CURRENT USER: " + principal.getName());
         model.addAttribute("cars", carService.findAll());
         return "/car/list";
     }
 
-
-    @GetMapping("/new")
+    @GetMapping(value = {"/dashboard/car/new", "/miucarrental/dashboard/car/new"})
     public String carForm(Model model) {
         model.addAttribute("car", new Car());
         model.addAttribute("status", carStatusService.findAll());
         return "/car/new";
     }
 
+    @GetMapping(value = {"/dashboard/car/edit/{carId}", "/miucarrental/dashboard/car/edit/{carId}"})
+    public String showFormForUpdate(@PathVariable Long carId, Model theModel) {
+        // get the car from the service
+        Car theCar = carService.findById(carId);
+        // set Car as a model attribute to pre-populate the form
+        theModel.addAttribute("car", theCar);
+        // theModel.addAttribute("status", carStatusService.findAll());
+        // send over to our form
+        return "car/edit";
+    }
 
-    @PostMapping("/new")
+    @PostMapping(value = {"/dashboard/car/new", "/miucarrental/dashboard/car/new"})
     public String save(@Valid @ModelAttribute("car") Car car,
-                       BindingResult result,
-                       @RequestParam("carPic") MultipartFile image,
-                       @RequestParam("carStatus") final CarStatus carStatus, Model model) {
-        //
-
+                       BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("errors", result.getAllErrors());
-            System.out.println(carStatus);
             System.out.println(result.getAllErrors().toString());
             model.addAttribute("status", carStatusService.findAll());
             return "car/new";
         }
-
-        //read uploaded image as bytes and set image attribute of product entity
-        if (!image.isEmpty()) {
-            try {
-                byte[] bytes = image.getBytes();
-                car.setCarPic(bytes);
-            } catch (Exception e) {
-                System.out.println("You failed to upload  => " + e.getMessage());
-            }
-        }
-
-        car.setCarStatus(carStatus);
         car = carService.save(car);
-
-//        update with correct url
-        return "redirect:/car/list";
+        return "redirect:/dashboard/car/list";
     }
-    @GetMapping(value="/available/list")
+
+    @PostMapping(value = {"/miucarrental/dashboard/car/edit", "/dashboard/car/edit"})
+    public String update(@Valid @ModelAttribute("car") Car car,
+                         BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("errors", bindingResult.getAllErrors());
+            return "car/edit";
+        }
+        car = carService.save(car);
+        return "redirect:/dashboard/car/list";
+    }
+
+    @GetMapping(value = "/available/list")
     public ModelAndView availableCars(Model model) {
 
         CarStatus carStatus = carStatusService.findById(1L);
@@ -94,24 +95,11 @@ public class CarController {
         modelAndView.setViewName("car/edit");
 
         List<String> carImages = recreateImages(availableCars);
-        modelAndView.addObject("carImages", carImages );
+        modelAndView.addObject("carImages", carImages);
 
         return modelAndView;
     }
 
-    @GetMapping("/update")
-    public String showFormForUpdate(@RequestParam("id") Long id, Model theModel) {
-
-        // get the car from the service
-        Car theCar = carService.findById(id);
-
-        // set Car as a model attribute to pre-populate the form
-        theModel.addAttribute("car", theCar);
-        theModel.addAttribute("status", carStatusService.findAll());
-
-        // send over to our form
-        return "car/new";
-    }
 
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Long id) {

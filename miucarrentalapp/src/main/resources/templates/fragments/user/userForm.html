@@ -1,0 +1,93 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="userForm">
+
+    <form class="form m-2 pb-5 container-center" method="post" th:action="${action}" th:object="${user}">
+
+        <h3 class="my-3">
+            <span th:if="!${editable}">Add</span>
+            <span th:if="${editable}">Edit</span>
+            User
+        </h3>
+
+
+        <h5 class="bg-light p-2">User Details</h5>
+        <fieldset>
+            <input type="hidden" name="userId" th:field="*{userId}"/>
+            <div class="row mx-0">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="firstName">First name</label>
+                        <input id="firstName" name="firstName" type="text" class="form-control"
+                               th:field="*{firstName}">
+                        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                              class="alert alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="lastName">Last name</label>
+                        <input id="lastName" name="lastName" type="text" class="form-control"
+                               th:field="*{lastName}">
+                        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                              class="alert alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input id="username" name="timeLength" type="text" class="form-control"
+                               th:field="*{username}">
+                        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                              class="alert alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input id="password" name="password" type="password" class="form-control"
+                               th:field="*{password}">
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                              class="alert alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="text" class="form-control"
+                               th:field="*{email}">
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                              class="alert alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="driversLicense">Drivers License</label>
+                        <input id="driversLicense" name="maxStudents" type="text" class="form-control"
+                               th:field="*{driversLicense}">
+                        <span th:if="${#fields.hasErrors('driversLicense')}" th:errors="*{driversLicense}"
+                              class="alert alert-danger"></span>
+                    </div>
+                </div>
+
+
+            </div>
+        </fieldset>
+
+
+        <div style="float:right;">
+            <a href="/dashboard/car/list" class="btn btn-outline-dark">Cancel</a>&nbsp;&nbsp;&nbsp;
+            <button id="btnSubmit" type="submit" class="btn btn-outline-success">
+                <span th:if="!${editable}">Save</span>
+                <span th:if="${editable}">Update</span>
+                User
+            </button>
+        </div>
+
+    </form>
+
+
+</div>

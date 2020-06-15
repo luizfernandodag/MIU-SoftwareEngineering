@@ -1,0 +1,102 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="carForm">
+
+    <form class="form m-2 pb-5 container-center" method="post" th:action="${action}" th:object="${car}">
+
+        <h3 class="my-3">
+            <span th:if="!${editable}">Add</span>
+            <span th:if="${editable}">Edit</span>
+            Car
+        </h3>
+
+
+        <h5 class="bg-light p-2">Car Details</h5>
+        <fieldset>
+            <input type="hidden" name="carId" th:field="*{carId}"/>
+            <div class="row mx-0">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="carMake">Car Make</label>
+                        <input id="carMake" name="carMake" type="text" class="form-control"
+                               th:field="*{carMake}">
+                        <span th:if="${#fields.hasErrors('carMake')}" th:errors="*{carMake}"
+                              class="alert alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="carBrand">Car Brand</label>
+                        <input id="carBrand" name="carBrand" type="text" class="form-control"
+                               th:field="*{carBrand}">
+                        <span th:if="${#fields.hasErrors('carBrand')}" th:errors="*{carBrand}"
+                              class="alert alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="plateNumber">Plate Number</label>
+                        <input id="plateNumber" name="timeLength" type="text" class="form-control"
+                               th:field="*{plateNumber}">
+                        <span th:if="${#fields.hasErrors('plateNumber')}" th:errors="*{plateNumber}"
+                              class="alert alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="rentPrice">Rent Price</label>
+                        <input id="rentPrice" name="rentPrice" type="number" class="form-control"
+                               th:field="*{rentPrice}">
+                        <span th:if="${#fields.hasErrors('rentPrice')}" th:errors="*{rentPrice}"
+                              class="alert alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="model">Model</label>
+                        <input id="model" name="model" type="text" class="form-control"
+                               th:field="*{model}">
+                        <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"
+                              class="alert alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="color">Color</label>
+                        <input id="color" name="maxStudents" type="text" class="form-control"
+                               th:field="*{color}">
+                        <span th:if="${#fields.hasErrors('color')}" th:errors="*{color}"
+                              class="alert alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" class="form-control">
+                            <option>Available</option>
+                            <option>Occupied</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </fieldset>
+
+
+        <div style="float:right;">
+            <a href="/dashboard/car/list" class="btn btn-outline-dark">Cancel</a>&nbsp;&nbsp;&nbsp;
+            <button id="btnSubmit" type="submit" class="btn btn-outline-success">
+                <span th:if="!${editable}">Save</span>
+                <span th:if="${editable}">Update</span>
+                Car
+            </button>
+        </div>
+
+    </form>
+
+
+</div>

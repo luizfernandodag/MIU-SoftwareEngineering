@@ -22,7 +22,7 @@ public class UserController {
         this.UserService = UserService;
     }
 
-    @GetMapping(value = {"/miucarrental/user/list", "/user/list"})
+    @GetMapping(value = {"/miucarrental/dashboard/user/list", "/dashboard/user/list"})
     public ModelAndView listUser() {
         ModelAndView modelAndView = new ModelAndView();
 
@@ -35,10 +35,10 @@ public class UserController {
 
     }
 
-    @GetMapping(value = {"/miucarrental/user/new","/user/new"})
+    @GetMapping(value = {"/miucarrental/dashboard/user/new","/dashboard/user/new"})
     public String displayNewUserForm(Model model) {
-        model.addAttribute("User", new User());
-        return "User/new";
+        model.addAttribute("user", new User());
+        return "user/new";
     }
 
 
