@@ -1,4 +1,4 @@
-package edu.miu.cs.cs425.project.miucarrentalal.config;
+package edu.miu.cs.cs425.project.miucarrental.config;
 
 
 import edu.miu.cs.cs425.project.miucarrental.service.MiuCarRentUserDetailsService;
