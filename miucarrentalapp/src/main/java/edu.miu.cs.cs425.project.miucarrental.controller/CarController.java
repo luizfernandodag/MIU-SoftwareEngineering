@@ -101,14 +101,12 @@ public class CarController {
     }
 
 
-    @GetMapping("/delete")
-    public String delete(@RequestParam("id") Long id) {
-
+    @GetMapping(value = {"/dashboard/car/delete/{carId}", "/miucarrental/dashboard/car/delete/{carId}"})
+    public String delete(@PathVariable Long carId) {
         // delete the Car
-        carService.deleteById(id);
-
+        carService.deleteById(carId);
         // redirect to /car/list
-        return "redirect:/car/list";
+        return "redirect:/dashboard/car/list";
 
     }
 

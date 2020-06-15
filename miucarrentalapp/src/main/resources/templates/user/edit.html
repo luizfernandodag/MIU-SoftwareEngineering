@@ -4,7 +4,10 @@
 <body>
 <div layout:fragment="content">
 
-    <!-- Place content here  -->
+    <div class="container-max-center">
+
+        <div th:replace="fragments/user/userForm :: userForm(action='/dashboard/user/edit', editable=true)"></div>
+    </div>
 
 </div>
 </body>

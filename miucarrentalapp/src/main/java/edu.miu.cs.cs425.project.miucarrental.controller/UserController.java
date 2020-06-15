@@ -53,32 +53,33 @@ public class UserController {
         return "redirect:/miucarrental/user/list";
     }
 
-    @GetMapping(value = {"/miucarrental/user/edit/{UserId}","/user/edit/{UserId}"})
-    public String editUser(@PathVariable Integer UserId, Model model) {
-        User User = UserService.getUserById  (UserId);
+    @GetMapping(value = {"/miucarrental/dashboard/user/edit/{userId}","/dashboard/user/edit/{userId}"})
+    public String editUserForm(@PathVariable Integer userId, Model model) {
+        User User = UserService.getUserById  (userId);
 
         if (User != null) {
-            model.addAttribute("User", User);
+            model.addAttribute("user", User);
             return "user/edit";
         }
         return "user/list";
     }
 
-    @PostMapping(value = {"/miucarrental/user/edit","/user/edit"})
-    public String updateUser(@Valid @ModelAttribute("User") User User,
+    @PostMapping(value = {"/miucarrental/dashboard/user/edit","/dashboard/user/edit"})
+    public String updateUser(@Valid @ModelAttribute("user") User user,
                                 BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "user/edit";
         }
 
-        return "redirect:/miucarrental/user/list";
+        user = UserService.saveUser(user);
+        return "redirect:/dashboard/user/list";
     }
 
-    @GetMapping(value = {"/miucarrental/user/delete/{UserId}","/user/delete/{UserId}"})
+    @GetMapping(value = {"/miucarrental/dashboard/user/delete/{UserId}","/dashboard/user/delete/{UserId}"})
     public String deleteUser(@PathVariable Integer UserId, Model model) {
         UserService.deleteUserById(UserId);
-        return "redirect:/miucarrental/user/list";
+        return "redirect:/dashboard/user/list";
 
     }
 
