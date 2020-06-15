@@ -7,12 +7,19 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="entityManagerFactory" />
+          <factory-entry name="miucarrental" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <dependency>spring_boot_edu.miu.cs.cs425.project.miucarrental.MiuCarRentalApplication</dependency>
+          <file>file://$MODULE_DIR$/src/main/java/edu/miu/cs/cs425/project/miucarrental/MiuCarRentalApplication.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/edu.miu.cs.cs425.project.miucarrental.config/SecurityConfiguration.java</file>
+        </fileset>
+      </configuration>
     </facet>
     <facet type="web" name="Web">
       <configuration>
@@ -35,6 +42,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-security:2.3.0.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: xerces:xercesImpl:2.6.2-jaxb-1.0.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.3.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.3.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.3.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-security:2.3.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.3.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-logging:2.3.0.RELEASE" level="project" />

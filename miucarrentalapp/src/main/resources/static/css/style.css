@@ -14,3 +14,7 @@ body{
     max-width: 1500px;
     margin: auto;
 }
+
+.min-w-auto{
+    min-width: auto;
+}

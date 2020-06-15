@@ -5,6 +5,10 @@
 <div layout:fragment="content">
 
 <!-- Place content here  -->
+    <div class="container-max-center">
+
+        <div th:replace="fragments/car/carForm :: carForm(action='/dashboard/car/new')"></div>
+    </div>
 
 </div>
 </body>

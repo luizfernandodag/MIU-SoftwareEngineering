@@ -15,13 +15,13 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-  // @Autowired
+    @Autowired
     private UserRepository repository;
 
 
     @Override
     public List<User> getAllUsers() {
-        return (List<User>)repository.findAll();
+        return (List<User>) repository.findAll();
     }
 
     @Override
@@ -48,28 +48,23 @@ public class UserServiceImpl implements UserService {
 
         }
         //else if (isDate(searchString)) {
-      //      return repository.findAllByDobEquals(LocalDate.parse(searchString, DateTimeFormatter.ISO_DATE));
-      //  }
-        else
-        {
+        //      return repository.findAllByDobEquals(LocalDate.parse(searchString, DateTimeFormatter.ISO_DATE));
+        //  }
+        else {
             return repository.findAllByFirstNameContainingOrLastNameContaining(searchString, searchString);
-
 
 
         }
     }
 
 
-
-
-
-   private static  boolean isDate(String searchString) {
+    private static boolean isDate(String searchString) {
         boolean dateBool = false;
         try {
             LocalDate.parse(searchString, DateTimeFormatter.ISO_DATE);
             dateBool = true;
-        } catch(Exception ex) {
-            if(ex instanceof DateTimeParseException) {
+        } catch (Exception ex) {
+            if (ex instanceof DateTimeParseException) {
                 dateBool = false;
             }
         }
@@ -80,16 +75,16 @@ public class UserServiceImpl implements UserService {
         return searchString.contains(".");
     }
 
-    private static boolean zipUS( String searchString ) {
-        return searchString.matches( "\\d{5}" );
+    private static boolean zipUS(String searchString) {
+        return searchString.matches("\\d{5}");
     }
 
     public static boolean isInteger(String s) {
         try {
             Integer.parseInt(s);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             return false;
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             return false;
         }
         // only got here if we didn't return false

@@ -6,6 +6,7 @@ import edu.miu.cs.cs425.project.miucarrental.model.User;
 import edu.miu.cs.cs425.project.miucarrental.repository.RentalCarRepository;
 import edu.miu.cs.cs425.project.miucarrental.service.RentalCarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -13,6 +14,7 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class RentalCarServiceImpl implements RentalCarService {
     @Autowired
     private RentalCarRepository rentalCarRepository;
