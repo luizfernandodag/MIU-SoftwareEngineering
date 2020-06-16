@@ -4,7 +4,10 @@
 <body>
 <div layout:fragment="content">
 
-    <!-- Place content here  -->
+    <div class="container-max-center">
+
+        <div th:replace="fragments/rent/rentForm :: rentForm(action='/dashboard/rentalCar/new')"></div>
+    </div>
 
 </div>
 </body>

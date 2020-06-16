@@ -27,13 +27,16 @@
             private String model;
             @NotBlank(message = "Color cannot be blank")
             private String color;
-
             @Lob
             @JsonIgnore
             private byte[] carPic;
+            private String carPicUrl;
+            private String status;
+            private String description;
 
             @OneToOne
             private CarStatus carStatus;
+
 
             @OneToMany(cascade = CascadeType.ALL)
             private List<RentalCar> RentsAndReservations;
@@ -55,6 +58,26 @@
 
             public void setRentPrice(double rentPrice) {
                 this.rentPrice = rentPrice;
+            }
+
+            public Car(String carMake,
+                       String carBrand,
+                       String plateNumber,
+                       double rentPrice,
+                       String model,
+                       String color,
+                       String carPicUrl,
+                       String status,
+                       String description) {
+                this.carMake = carMake;
+                this.carBrand = carBrand;
+                this.plateNumber = plateNumber;
+                this.rentPrice = rentPrice;
+                this.model = model;
+                this.color = color;
+                this.carPicUrl = carPicUrl;
+                this.status = status;
+                this.description = description;
             }
 
             public Car(String carMake, String carBrand, String plateNumber, CarStatus carStatus, double rentPrice, String model, String color, byte[] carPic) {
@@ -115,6 +138,22 @@
                 this.carStatus = carStatus;
             }
 
+            public String getStatus() {
+                return status;
+            }
+
+            public void setStatus(String status) {
+                this.status = status;
+            }
+
+            public String getDescription() {
+                return description;
+            }
+
+            public void setDescription(String description) {
+                this.description = description;
+            }
+
             public String getModel() {
                 return model;
             }
@@ -137,6 +176,14 @@
 
             public void setCarPic(byte[] carPic) {
                 this.carPic = carPic;
+            }
+
+            public String getCarPicUrl() {
+                return carPicUrl;
+            }
+
+            public void setCarPicUrl(String carPicUrl) {
+                this.carPicUrl = carPicUrl;
             }
 
             public Long getCarId() {

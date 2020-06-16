@@ -174,32 +174,8 @@
         <div class="col-10">
             <div class="row no-gutters px-4">
                 <div class="col-sm-12 col-md-6 col-lg-4 pb-3 align-items-center justify-content-center"
-                     th:each="i: ${#numbers.sequence(0, 5)}">
-                    <div class="card m-auto shadow-none border" style="width: 18rem;">
-                        <img class="card-img-top" src="https://via.placeholder.com/250" alt="Card image cap">
-                        <div class="card-header p-1 d-flex justify-content-center align-items-center">
-                            <div class="mr-auto font-weight-light" style="font-size: 26px;">Car name</div>
-                            <div class="text-muted">$60 / day</div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-center align-items-center mb-2">
-                                <div class="brand mr-auto">
-                                    Brand
-                                </div>
-                                <div class="like">
-                                    100 likes
-                                </div>
-                            </div>
-                            <p class="card-text">
-                                Nemo enim ipsam voluptatem quia voluptas
-                                sit aspernatur aut odit aut fugit, sed quia
-                                consequuntur magni dolores eos qui ratione.
-                            </p>
-                            <a href="#" class="card-link">Rent</a>
-                            <a href="#" class="card-link">Details</a>
-                        </div>
-                    </div>
-
+                     th:each="car: ${cars}">
+                    <div th:replace="fragments/car/carItem :: carItem(car= ${car})"></div>
                 </div>
             <div class="col-12">
                 <nav aria-label="Page navigation example">
@@ -208,8 +184,6 @@
                             <a class="page-link" href="#" tabindex="-1">Previous</a>
                         </li>
                         <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
                         <li class="page-item">
                             <a class="page-link" href="#">Next</a>
                         </li>

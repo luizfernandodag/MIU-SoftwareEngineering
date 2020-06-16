@@ -1,0 +1,31 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="carItem">
+
+    <div class="card m-auto shadow-none border" style="width: 18rem;" th:object="${car}">
+        <img class="card-img-top img-fluid" th:src="${car.carPicUrl}" alt="Card image cap" height="220">
+        <div class="card-header p-1 justify-content-center align-items-center">
+            <div class="mr-auto font-weight-light" style="font-size: 26px;">
+                <span th:text="${car.model}"></span>
+            </div>
+            <div class="text-muted">$<span th:text="${car.rentPrice}"></span> / day</div>
+        </div>
+        <div class="card-body">
+            <div class="d-flex justify-content-center align-items-center mb-2">
+                <div class="brand mr-auto">
+                    <span th:text="${car.carMake}"></span>
+                </div>
+                <div class="like">
+                    100 likes
+                </div>
+            </div>
+            <p class="card-text">
+                Nemo enim ipsam voluptatem quia voluptas
+                sit aspernatur aut odit aut fugit, sed quia
+                consequuntur magni dolores eos qui ratione.
+            </p>
+            <a href="#" class="card-link">Rent</a>
+            <a href="#" class="card-link">Details</a>
+        </div>
+    </div>
+
+
+</div>

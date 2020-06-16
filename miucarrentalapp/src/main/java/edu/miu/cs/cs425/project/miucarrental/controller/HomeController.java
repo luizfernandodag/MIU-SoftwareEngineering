@@ -1,12 +1,15 @@
 package edu.miu.cs.cs425.project.miucarrental.controller;
 
+import edu.miu.cs.cs425.project.miucarrental.util.GeneratorUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
     @GetMapping(value = {"/", "/index", "/home", "/miucarrental/public/home"})
-    public String showHomePage() {
+    public String showHomePage(Model model) {
+        model.addAttribute("cars", GeneratorUtils.generateCars());
         return "public/home";
     }
 
