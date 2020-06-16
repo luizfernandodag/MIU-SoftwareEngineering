@@ -22,8 +22,7 @@
                 sit aspernatur aut odit aut fugit, sed quia
                 consequuntur magni dolores eos qui ratione.
             </p>
-            <a href="#" class="card-link">Rent</a>
-            <a href="#" class="card-link">Details</a>
+            <a th:href="@{'/dashboard/rentalCar/new?carId={carId}'(carId=${car.carId})}" class="card-link">Rent</a>
         </div>
     </div>
 

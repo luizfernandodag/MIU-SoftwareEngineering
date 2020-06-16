@@ -1,0 +1,24 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="carItemList">
+
+    <div class="row" th:object="${car}">
+        <div class="col-4">
+            <img class="card-img-top img-fluid" th:src="${car.carPicUrl}" alt="Card image cap" height="200">
+        </div>
+        <div class="col-8">
+            <div th:text="${car.model}"></div>
+            <div class="text-muted">
+                $<span th:text="${car.rentPrice}"></span> / day
+            </div>
+
+            <p class="card-text" style="min-height: 80px">
+                Nemo enim ipsam voluptatem quia voluptas
+                sit aspernatur aut odit aut fugit, sed quia
+                consequuntur magni dolores eos qui ratione.
+            </p>
+            <div class="border-top">
+                <a th:href="@{'/dashboard/rentalCar/new?carId={carId}'(carId=${car.carId})}">Select</a>
+            </div>
+        </div>
+    </div>
+
+</div>

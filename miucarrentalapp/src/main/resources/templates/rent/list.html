@@ -32,25 +32,25 @@
                 <th scope="col">Return Date</th>
                 <th scope="col">Car ID</th>
                 <th scope="col">User ID</th>
-                <th scope="col"></th>
+                <th scope="col" th:if="${isAdmin}"></th>
             </tr>
             </thead>
 
 
             <tbody>
-            <tr th:each="rent, iterStat: ${rentalCars}">
+            <tr th:each="rent, iterStat: ${rentalCars}"  th:if="${(rent.user.userId == userId) || (isAdmin == true)}">
                 <td th:text="${rent.rentalCarId}"></td>
                 <td th:text="${rent.pickupDate}"></td>
                 <td th:text="${rent.returnDate}"></td>
                 <td th:text="${rent.car?.carId}"></td>
                 <td th:text="${rent.user?.userId}"></td>
-                <td>
+                <td th:if="${isAdmin}">
                     <a class="btn btn-outline-dar pointer min-w-auto"
-                       th:href="@{'/dashboard/user/edit/{userId}'(userId=${user.userId})}">
+                       th:href="@{'/dashboard/rentalCar/edit/{rentalCarId}'(rentalCarId=${rent.rentalCarId})}">
                         <span class="mdi mdi-pencil"></span>
                     </a>
                     <a class="btn btn-outline-danger pointer min-w-auto"
-                       th:onclick="'javascript:showModal(' + ${user.userId} + ')'">
+                       th:onclick="'javascript:showModal(' + ${rent.rentalCarId} + ')'">
                         <span class="mdi mdi-delete text-danger"></span>
                     </a>
                 </td>
