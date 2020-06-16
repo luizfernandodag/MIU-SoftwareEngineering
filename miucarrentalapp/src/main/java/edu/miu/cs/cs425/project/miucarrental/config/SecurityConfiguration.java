@@ -21,7 +21,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     private UserDetailsService userDetailsService;
 
-
+    @Autowired
+    
     public SecurityConfiguration(MiuCarRentUserDetailsService userDetailsService) {
 
         this.userDetailsService = userDetailsService;
@@ -40,29 +41,29 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure (HttpSecurity http) throws Exception{
-//        http
-//                .headers()
-//                .frameOptions().sameOrigin()
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers("/resources/static/**","/images/**","/css/**","/miucarrental/public/**").permitAll()
-//                .antMatchers("/", "/miucarrental", "/miucarrental/public/home","/miucarrental/public/login").permitAll()
-//                .antMatchers("/miucarrental/**").hasRole("ADMIN")
-//                .antMatchers("/miucarrental/car/list.html","/miucarrental/car/profile.html","/miucarrental/customer/edit.html","/miucarrental/customer/new.html", "/miucarrental/dashboard/index.html","/miucarrental/rent/**", "/miucarrental/user/edit.html", "/miucarrental/user/new.html").hasRole("CUSTOMER")
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/miucarrental/public/login.html")
-//                .defaultSuccessUrl("/miucarrental/public/home.html")
-//                .failureUrl("/miucarrental/public/login?error")
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/miucarrental/public/logout"))
-//                .logoutSuccessUrl("/miucarrental/public/login?logout")
-//                .permitAll()
-//                .and()
-//                .exceptionHandling();
+        http
+                .headers()
+                .frameOptions().sameOrigin()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/resources/static/**","/images/**","/css/**","/miucarrental/public/**", "/miucarrental/public/login").permitAll()
+                .antMatchers("/", "/miucarrental").permitAll()
+                .antMatchers("/miucarrental/admin/**").hasRole("ADMIN")
+                .antMatchers("/miucarrental/customer/**").hasRole("CUSTOMER")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/miucarrental/public/login")
+                .defaultSuccessUrl("/miucarrental/public/home")
+                .failureUrl("/miucarrental/public/login?error")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/miucarrental/public/logout"))
+                .logoutSuccessUrl("/miucarrental/public/login?logout")
+                .permitAll()
+                .and()
+                .exceptionHandling();
 
 
     }

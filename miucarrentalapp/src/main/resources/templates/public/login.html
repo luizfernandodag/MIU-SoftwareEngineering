@@ -1,31 +1,94 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:layout="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>MIUCarRent</title>
 
     <head th:replace="fragments/links :: links"></head>
-    <link rel="stylesheet" th:href="@{/css/login.css}">
 
 </head>
-<body class="text-center">
+<body>
 
-<form class="form-signin">
-    <img class="mb-4" src="https://via.placeholder.com/80" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> Remember me
-        </label>
+
+<!--Navbar-->
+<nav th:replace="fragments/home/navbar :: navbar">
+
+
+    <form class="form-inline my-2 my-lg-0">
+        <span sec:authorize="isAnonymous()" style="color:#fff;padding-left: 2em; padding-right: 1em;">Welcome, Guest</span>
+        <span sec:authorize="isAuthenticated()" style="color:#fff;padding-left: 0em; padding-right: 0.5em;">Welcome, </span><span sec:authorize="isAuthenticated()" style="color:#fff;padding-left: 0em; padding-right: 0.5em;" sec:authentication="principal.username"></span>
+        <a sec:authorize="isAnonymous()" href="/miucarrent/public/login" class="btn btn-secondary">Sign In</a>
+        <a sec:authorize="isAuthenticated()" href="/miucarrent/public/logout" class="btn btn-secondary">Sign Out</a>
+    </form>
+</nav>
+<!--Navbar-->
+
+
+
+<!--Header-->
+<header class="container-fluid bg-light p-md-3 p-lg-5">
+    <div class="row container-max-center" style="min-height: 20vh;">
+        <div class="col-md-12">
+            <h2>MIU CAR RENTAL</h2>
+
+        </div>
+
+        <form class="col-md-12">
+
+        </form>
+
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2019-2020</p>
-</form>
+</header>
+
+
+<!---->
+<section class="bg-light mt-2">
+    <div class="row py-3 container-max-center justify-content-center align-items-center">
+
+
+        <div>
+            <form name="formLogin" th:action="@{/miucarrental/public/login}" method="post">
+                <div th:if="${param.error}" class="alert alert-dismissible alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    Invalid username and/or password.
+                </div>
+                <div th:if="${param.logout}" class="alert alert-dismissible alert-primary">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    You have been signed out.
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input id="username" name="username" type="text" class="form-control" autofocus="autofocus"/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" class="form-control"/>
+                </div>
+                <div style="float:right;">
+                    <a href="/miucarrental/public/home" class="btn btn-outline-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+                    <button id="btnSubmit" type="submit" class="btn btn-outline-success">Sign In</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
+<!--Footer-->
+<footer th:replace="fragments/home/footer :: footer"></footer>
+
 
 <section th:replace="fragments/scripts :: scripts"></section>
+
 </body>
 </html>
+
+
+
+
+

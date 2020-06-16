@@ -20,6 +20,10 @@ public class MiuCarRentUserDetailsService implements UserDetailsService{
 
     private UserRepository userRepository;
 
+    public MiuCarRentUserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username)

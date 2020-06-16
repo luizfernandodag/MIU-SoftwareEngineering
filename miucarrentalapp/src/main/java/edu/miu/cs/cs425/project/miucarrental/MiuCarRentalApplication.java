@@ -9,13 +9,16 @@ import edu.miu.cs.cs425.project.miucarrental.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 
 import java.time.LocalDate;
 
-//@SpringBootApplication
-@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+@SpringBootApplication
+//@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+//@EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class})
 public class MiuCarRentalApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
