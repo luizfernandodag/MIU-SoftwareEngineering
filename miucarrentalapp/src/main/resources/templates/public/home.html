@@ -21,20 +21,13 @@
 
         </div>
 
-        <form class="col-md-12">
+        <form class="col-md-12" id="searchCarForm" method="get" action="/home/car/search">
             <div class="row">
 
                 <div class="form-group col-md-10">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="Search"
+                           id="searchString" name="searchString" th:value="${searchString}" autofocus>
                 </div>
-
-<!--                <div class="form-group col-md-2">-->
-<!--                    <input type="date" class="form-control" placeholder="Date from">-->
-<!--                </div>-->
-
-<!--                <div class="form-group col-md-2">-->
-<!--                    <input type="date" class="form-control" placeholder="Date To">-->
-<!--                </div>-->
 
                 <div class="form-group col-md-2">
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
@@ -50,12 +43,13 @@
 <section class="bg-light mt-2">
     <div class="row py-3 container-max-center justify-content-center align-items-center">
         <div class="col-md-8">
-            <div class="display-4 font-weight-light" >6 cars - from $60 to $60</div>
+            <div class="display-4 font-weight-light">6 cars - from $60 to $60</div>
             <div>Sorted by Total Price in US Dollars</div>
         </div>
         <div class="col-md-4">
             <div class="dropdown float-right">
-                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Sort by
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -72,7 +66,7 @@
 <!-- Products -->
 <section class="mt-5">
     <div class="row no-gutters container-max-center">
-        <div class="col-2 border-right" style="min-width: 150px">
+        <div class="col-2 border-right" style="min-width: 150px; min-height: 60vh;">
             <form>
                 <div class="p-2 bg-light text-uppercase font-weight-bold">
                     Filter your results
@@ -80,36 +74,20 @@
                 <div class="mt-2 p-2">
                     <div class="text-uppercase mb-2">Distance</div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="distance" id="d1" value="value1" checked>
+                        <input class="form-check-input" type="radio" name="distance" id="d1" value="value1"
+                               onchange="filtering('distanceMile','TWENTY')"
+                               th:checked="${#request.getParameter('distanceMile')?.equals('TWENTY')}">
                         <label class="form-check-label" for="d1">
                             20 miles
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="distance" id="exampleRadios2" value="value1">
+                        <input class="form-check-input" type="radio" name="distance" id="exampleRadios2" value="value1"
+                               onchange="filtering('distanceMile','FIFTY')"
+                               th:checked="${#request.getParameter('distanceMile')?.equals('FIFTY')}">
+
                         <label class="form-check-label" for="exampleRadios2">
                             50 miles
-                        </label>
-                    </div>
-                </div>
-                <div class="mt-2 p-2">
-                    <div class="text-uppercase mb-2">Passenger Capacity</div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="passenger" id="p1" value="option1" >
-                        <label class="form-check-label" for="p1">
-                            2 persons
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="passenger" id="p2" value="option1" >
-                        <label class="form-check-label" for="p2">
-                            1-5 persons
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="passenger" id="p3" value="option1" checked>
-                        <label class="form-check-label" for="p3">
-                            8 persons
                         </label>
                     </div>
                 </div>
@@ -117,25 +95,33 @@
                 <div class="mt-2 p-2">
                     <div class="text-uppercase mb-2">Car type</div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="car" id="c1" value="option1" checked>
+                        <input class="form-check-input" type="radio" name="car" id="c1" value="option1"
+                               onchange="filtering('type', 'Economy')"
+                               th:checked="${#request.getParameter('type')?.equals('Economy')}">
                         <label class="form-check-label" for="c1">
                             Economy
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="car" id="c2" value="option2">
+                        <input class="form-check-input" type="radio" name="car" id="c2" value="option2"
+                               onchange="filtering('type', 'Intermediate')"
+                               th:checked="${#request.getParameter('type')?.equals('Intermediate')}">
                         <label class="form-check-label" for="c2">
                             Intermediate
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="car" id="c3" value="option2">
+                        <input class="form-check-input" type="radio" name="car" id="c3" value="option2"
+                               onchange="filtering('type', 'Standard')"
+                               th:checked="${#request.getParameter('type')?.equals('Standard')}">
                         <label class="form-check-label" for="c3">
                             Standard
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="car" id="c4" value="option2">
+                        <input class="form-check-input" type="radio" name="car" id="c4" value="option2"
+                               onchange="filtering('type', 'FullSize')"
+                               th:checked="${#request.getParameter('type')?.equals('FullSize')}">
                         <label class="form-check-label" for="c4">
                             Full-Size
                         </label>
@@ -155,13 +141,17 @@
                 <div class="mt-2 p-2">
                     <div class="text-uppercase mb-2">Payment options</div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="payment" id="o1" value="option1" checked>
+                        <input class="form-check-input" type="radio" name="payment" id="o1" value="option1"
+                               onchange="filtering('payment', 'PickUp')"
+                               th:checked="${#request.getParameter('payment')?.equals('PickUp')}">
                         <label class="form-check-label" for="o1">
                             Pay at Pick-Up
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="payment" id="o2" value="option2">
+                        <input class="form-check-input" type="radio" name="payment" id="o2" value="option2"
+                               onchange="filtering('payment', 'Card')"
+                               th:checked="${#request.getParameter('payment')?.equals('Card')}">
                         <label class="form-check-label" for="o2">
                             Reserve without a Card
                         </label>
@@ -177,22 +167,21 @@
                      th:each="car: ${cars}">
                     <div th:replace="fragments/car/carItem :: carItem(car= ${car})"></div>
                 </div>
-            <div class="col-12">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+                <div class="col-12">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
 
             </div>
-
 
 
         </div>
@@ -211,7 +200,7 @@
                 nesciunt. Neque porro quisquam est, qui dolorem.
             </p>
         </div>
-        
+
         <div class="col-md-6">
             <img src="https://via.placeholder.com/500x300" alt="">
         </div>
@@ -221,9 +210,31 @@
 
 <!--Footer-->
 <footer th:replace="fragments/home/footer :: footer"></footer>
-
-
 <section th:replace="fragments/scripts :: scripts"></section>
+
+<script type="text/javascript" th:inline="javascript">
+    const params = {
+        distanceMile: 'TWENTY',
+        type: 'Economy',
+        payment: 'PickUp'
+    }
+
+    function getparams() {
+        window.location.search
+            .replace(/[?&]+([^=&]+)=([^&]*)/gi, function (str, key, value) {
+                    params[key] = value;
+                }
+            );
+    }
+
+    function filtering(param, value) {
+        getparams();
+        params[param] = value;
+        const p = $.param(params);
+        window.location.assign("/home/car/filter?" + p);
+    }
+
+</script>
 
 </body>
 </html>

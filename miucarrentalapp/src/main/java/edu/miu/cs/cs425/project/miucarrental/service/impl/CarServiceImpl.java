@@ -1,9 +1,12 @@
     package edu.miu.cs.cs425.project.miucarrental.service.impl;
 
-    import edu.miu.cs.cs425.project.miucarrental.model.Car;
+    import edu.miu.cs.cs425.project.miucarrental.model.*;
     import edu.miu.cs.cs425.project.miucarrental.repository.CarRepository;
     import edu.miu.cs.cs425.project.miucarrental.service.CarService;
     import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.data.domain.Page;
+    import org.springframework.data.domain.PageRequest;
+    import org.springframework.data.domain.Sort;
     import org.springframework.stereotype.Service;
 
     import java.util.List;
@@ -37,4 +40,22 @@
 
             return carRepository.findById(id).get();
         }
+
+        @Override
+        public Page<Car> searchDataPaged(String searchString, int pageNo) {
+            return carRepository.findAllByCarMakeContainingOrCarBrandContainingOrModelContaining(searchString,
+                    searchString,
+                    searchString,
+                    PageRequest.of(pageNo, 10, Sort.by("carId")));
+        }
+
+        @Override
+        public Page<Car> filterDataPaged(DistanceMile distance, CarStatusEnum status, CarType type, PaymentOption payment, int pageNo) {
+            return carRepository.findAllByDistanceAndStatusAndTypeAndPaymentOption(distance,
+                    status,
+                    type,
+                    payment,
+                    PageRequest.of(pageNo, 10, Sort.by("carId")));
+        }
+
     }

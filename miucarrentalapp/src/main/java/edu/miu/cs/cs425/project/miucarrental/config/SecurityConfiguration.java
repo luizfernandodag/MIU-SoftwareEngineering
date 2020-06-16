@@ -48,6 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                 .antMatchers("/resources/static/**","/images/**","/css/**","/miucarrental/public/**", "/miucarrental/public/login").permitAll()
                 .antMatchers("/", "/miucarrental").permitAll()
+                .antMatchers("/", "/home/**").permitAll()
                 .antMatchers("/miucarrental/admin/**").hasRole("ADMIN")
                 .antMatchers("/miucarrental/customer/**").hasRole("CUSTOMER")
                 .anyRequest().authenticated()
