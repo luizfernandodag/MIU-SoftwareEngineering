@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:layout="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>MIUCarRent</title>
@@ -8,8 +9,14 @@
 
 <body>
 <div class="content">
-    <header th:replace="fragments/dashboard/navbar :: navbar"></header>
-    <div layout:fragment="content"></div>
+
+    <div th:with="isAdmin=${#authorization.getAuthentication().getName().equals('ADMIN')},
+         isCustomer=${#authorization.getAuthentication().getName().equals('CUSTOMER')}">
+
+        <header th:replace="fragments/dashboard/navbar :: navbar"></header>
+        <div layout:fragment="content"></div>
+
+    </div>
 </div>
 
 <section th:replace="fragments/scripts :: scripts"></section>

@@ -23,7 +23,7 @@ public class RentalCarController {
     }
 
 
-    @GetMapping(value = {"/miucarrent/RentalCar/list", "/RentalCar/list"})
+    @GetMapping(value = {"/miucarrent/dashboard/rentalCar/list", "/dashboard/rentalCar/list"})
     public ModelAndView listRentalCar() {
         ModelAndView modelAndView = new ModelAndView();
 
@@ -31,7 +31,7 @@ public class RentalCarController {
         modelAndView.addObject("RentalCars", RentalCars);
         modelAndView.addObject("searchString", "");
         modelAndView.addObject("RentalCarsCount", RentalCars.size());
-        modelAndView.setViewName("RentalCar/list");
+        modelAndView.setViewName("rent/list");
         return modelAndView;
 
     }
