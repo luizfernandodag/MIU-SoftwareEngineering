@@ -10,33 +10,10 @@ public class HomeController {
         return "public/home";
     }
 
-    @GetMapping(value = {"/miucarrental/public/login" })
-    public String showLoginPage() {
-        return "public/login";
-    }
-
     @GetMapping(value = { "/dashboard", "/miucarrental/dashboard"})
     public String showDashboard() {
         return "dashboard/index";
     }
-    //*****************************************************************
-
-//    @GetMapping(value = {"/","/miucarrental","/public/home"})
-//    public String home0() {
-//        return "redirect:/miucarrental/public/home";
-//    }
-//
-//    @GetMapping(value = {"/public/home","/miucarrental/public/home"})
-//    public String home1() {
-//        return "public/index";
-//    }
-//
-//
-//    @GetMapping(value = {"/secured/home","/miucarrental/secured/home"})
-//    public String home2() {
-//        return "secured/index";
-//    }
-
 
     @GetMapping(value = {"/public/about","/miucarrental/public/about"})
     public String about() {
@@ -47,8 +24,5 @@ public class HomeController {
     public String virtualtour() {
         return "public/virtualtour";
     }
-
-
-
 
 }
