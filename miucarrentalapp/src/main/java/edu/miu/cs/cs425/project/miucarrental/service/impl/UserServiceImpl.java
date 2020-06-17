@@ -5,6 +5,9 @@ import edu.miu.cs.cs425.project.miucarrental.model.User;
 import edu.miu.cs.cs425.project.miucarrental.repository.UserRepository;
 import edu.miu.cs.cs425.project.miucarrental.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -43,18 +46,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> searchUsers(String searchString) {
+    public Page<User> searchUsers(String searchString, int pageNo) {
         if (searchString.contains("-")) {
-            return repository.findAllByDriversLicenseContaining(searchString);
-
-        }
-        //else if (isDate(searchString)) {
-        //      return repository.findAllByDobEquals(LocalDate.parse(searchString, DateTimeFormatter.ISO_DATE));
-        //  }
-        else {
-            return repository.findAllByFirstNameContainingOrLastNameContaining(searchString, searchString);
-
-
+            return repository.findAllByDriversLicenseContaining(searchString,
+                    PageRequest.of(pageNo, 10, Sort.by("userId")));
+        } else {
+            return repository.findAllByFirstNameContainingOrLastNameContainingOrUsernameContaining(searchString,
+                    searchString, searchString,
+                    PageRequest.of(pageNo, 10, Sort.by("userId")));
         }
     }
 

@@ -110,6 +110,16 @@ public class CarController {
 
     }
 
+    @GetMapping(value = {"/dashboard/car/search", "/miucarrental/dashboard/car/search"})
+    public ModelAndView searchCarPaged(@RequestParam String searchString, @RequestParam(defaultValue = "0") int pageno) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("cars", carService.searchDataPaged(searchString, 0));
+        modelAndView.addObject("searchString", searchString);
+        modelAndView.addObject("currentPageNo", pageno);
+        modelAndView.setViewName("/car/list");
+        return modelAndView;
+    }
+
 
     public static List<String> recreateImages(List<Car> cars) {
         List<String> carImages = new ArrayList<>();

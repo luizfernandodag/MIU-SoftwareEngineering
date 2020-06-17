@@ -66,7 +66,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="color">Color</label>
-                        <input id="color" name="maxStudents" type="text" class="form-control"
+                        <input id="color" name="color" type="text" class="form-control"
                                th:field="*{color}">
                         <span th:if="${#fields.hasErrors('color')}" th:errors="*{color}"
                               class="alert alert-danger"></span>
@@ -75,10 +75,20 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
+                        <label for="carPicUrl">Picture Url</label>
+                        <input id="carPicUrl" name="carPicUrl" type="text" class="form-control"
+                               th:field="*{carPicUrl}">
+                        <span th:if="${#fields.hasErrors('carPicUrl')}" th:errors="*{carPicUrl}"
+                              class="alert alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
                         <label for="status">Status</label>
-                        <select id="status" class="form-control">
-                            <option>Available</option>
-                            <option>Occupied</option>
+                        <select id="status" class="form-control" th:field="*{status}">
+                            <option value="Available">Available</option>
+                            <option value="Occupied">Occupied</option>
                         </select>
                     </div>
                 </div>

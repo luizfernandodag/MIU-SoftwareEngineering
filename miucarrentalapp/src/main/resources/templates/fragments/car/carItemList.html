@@ -2,7 +2,8 @@
 
     <div class="row" th:object="${car}">
         <div class="col-4">
-            <img class="card-img-top img-fluid" th:src="${car.carPicUrl}" alt="Card image cap" height="200">
+            <img th:if="${car.carPicUrl == null}" class="card-img-top" src="https://via.placeholder.com/250x150" alt="Card image cap">
+            <img th:if="${car.carPicUrl != null}" class="card-img-top img-fluid" th:src="${car.carPicUrl}" alt="Card image cap" height="200">
         </div>
         <div class="col-8">
             <div th:text="${car.model}"></div>
